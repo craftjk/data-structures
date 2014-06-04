@@ -20,6 +20,7 @@ define([
 
     var stack;
     var instantiator = variant === 'pseudoclassical' ? Stack : makeStack;
+
     var prototypeOfInstances = variant === 'prototypal' && stackMethods;
 
     beforeEach(function(){
@@ -87,8 +88,21 @@ define([
       });
     });
 
-  });
+    describe('stack-profiling-test', function() {
+      it(' with 1000000 stacks', function() {
+        stacks = [];
+        for (var i = 0; i < 1000000; i++) {
+          stacks.push(instantiator());
+        }
+      });
 
+    });
+    // functional        -  917.8ms, 1113.1ms
+    // functional-shared - 1524.8ms, 938.8ms
+    // prototypal        -  330.5ms, 346.3ms
+    // pseudoclassical   -   64.8ms, 59.7ms
+  });
+  /*
   describe("queue", function() {
     var queue;
     var instantiator = variant === 'pseudoclassical' ? Queue : makeQueue;
@@ -158,9 +172,8 @@ define([
         expect(queue.dequeue()).to.equal('b');
       });
     });
-
   });
-
+  */
 
   window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
 });
