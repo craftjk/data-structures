@@ -37,7 +37,6 @@ Graph.prototype.removeNode = function(node){
 
   delete this._edges[node];
   for (var key in this._edges) {
-    console.log(key);
     delete this._edges[key][node];
   }
 };
