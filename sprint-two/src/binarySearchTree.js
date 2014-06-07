@@ -59,7 +59,23 @@ funcs.depthFirstLog = function(callback) {
 };
 
 
-
+funcs.breadthFirstlog = function(callback) {
+  var nodes = [this];
+  while (nodes.length > 0) {
+    callback(nodes[0].value);
+    var checked = nodes.shift();
+    if (checked.left !== null) {
+      nodes.push(checked.left);
+    }
+    if (checked.right !== null) {
+      nodes.push(checked.right);
+    }
+  }
+};
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+
+
+

@@ -1,5 +1,4 @@
 var Graph = function(){
-  // node: {value: val, connected: []}
   this._nodes = [];
   this._edges = [];
 
